@@ -8,24 +8,25 @@ class ShoppingList extends StatefulWidget {
 }
 
 class _ShoppingListState extends State<ShoppingList> {
-  final _selectedItems = List<String>();
 
   Widget _buildListItem(BuildContext context, DocumentSnapshot item) {
     final _isDone = item['done'];
     final style = _isDone ? TextStyle(decoration: TextDecoration.lineThrough) : null;
+
     return ListTile(
       title: Text('${item['title']}', style: style),
+      subtitle: Text(!_isDone ? 'Current State: ${item['countRemaining']}/${item['countDesired']} at home' : 'Done'),
       onTap: () {
-        setState(() {
-          if (_isDone) {
-            _selectedItems.remove(item['title']);
-          } else {
-            _selectedItems.add(item['title']);
-          }
+        FirebaseFirestore.instance.runTransaction((transaction) async {
+          DocumentSnapshot freshSnapshot = await transaction.get(item.reference);
+          transaction.update(freshSnapshot.reference, {
+            'done': !freshSnapshot['done']
+          });
         });
       },
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
