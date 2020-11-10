@@ -27,7 +27,6 @@ class _ShoppingListState extends State<ShoppingList> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
