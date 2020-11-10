@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,39 +9,34 @@ class ShoppingList extends StatefulWidget {
 
 class _ShoppingListState extends State<ShoppingList> {
   final _selectedItems = List<String>();
-  final _listItems = List<String>();
 
-
-  @override
-  void initState() {
-    super.initState();
-    _listItems.addAll([
-      'Milk',
-      'Eggs',
-      'Tomatoes',
-      'Beer'
-    ]);
+  Widget _buildListItem(BuildContext context, DocumentSnapshot item) {
+    final _isDone = item['done'];
+    final style = _isDone ? TextStyle(decoration: TextDecoration.lineThrough) : null;
+    return ListTile(
+      title: Text('${item['title']}', style: style),
+      onTap: () {
+        setState(() {
+          if (_isDone) {
+            _selectedItems.remove(item['title']);
+          } else {
+            _selectedItems.add(item['title']);
+          }
+        });
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: _listItems.length,
-      itemBuilder: (context, index) {
-        final item = _listItems[index];
-        final _isDone = _selectedItems.contains(item);
-        final style = _isDone ? TextStyle(decoration: TextDecoration.lineThrough) : null;
-        return ListTile(
-          title: Text('$item', style: style),
-          onTap: () {
-            setState(() {
-              if (_isDone) {
-                _selectedItems.remove(item);
-              } else {
-                _selectedItems.add(item);
-              }
-            });
-          },
+    return StreamBuilder(
+      stream: FirebaseFirestore.instance.collection('shopping-lists').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) return Text('Loading...');
+        return ListView.builder(
+          itemCount: snapshot.data.documents.length,
+          itemBuilder: (context, index) =>
+            _buildListItem(context, snapshot.data.documents[index]),
         );
       }
     );

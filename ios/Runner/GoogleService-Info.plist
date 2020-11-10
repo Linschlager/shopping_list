@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>180832613252-qjm9knnub3moi6pf36ej4pff20tq7snm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.180832613252-qjm9knnub3moi6pf36ej4pff20tq7snm</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDgN-uMHIu4VhFz75NJ5s7tQWHD3L870rQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>180832613252</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>ch.linusvettiger.shoppinglist</string>
+	<key>PROJECT_ID</key>
+	<string>flutter-shopping-list-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flutter-shopping-list-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:180832613252:ios:edce969156a97f8cb363d1</string>
+	<key>DATABASE_URL</key>
+	<string>https://flutter-shopping-list-app.firebaseio.com</string>
+</dict>
+</plist>

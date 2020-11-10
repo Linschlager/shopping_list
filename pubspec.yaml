@@ -24,6 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  firebase_core:
+  cloud_firestore:
   uuid: 2.2.2
 
 
